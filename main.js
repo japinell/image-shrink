@@ -1,12 +1,14 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
 
 // Set environment variable for development
 process.env.NODE_ENV = 'development';
 const isDev = process.env.NODE_ENV === 'development';
 const isWin = process.platform === 'win32';
 
+let mainWindow;
+
 const createMainWindow = () => {
-    const mainWindow = new BrowserWindow(
+    mainWindow = new BrowserWindow(
         {
             title: 'Image Shrink',
             width: 500,
@@ -26,6 +28,11 @@ app.on('ready', () => {
 
     const mainMenu = Menu.buildFromTemplate(menu)
     Menu.setApplicationMenu(mainMenu);
+
+    globalShortcut.register("CmdOrCtrl+R", () => {
+        mainWindow.reload();
+    });
+    
 })
 
 const menu = [
@@ -34,6 +41,8 @@ const menu = [
         submenu: [
             {
                 label: "Quit",
+                //accelerator: isWin ? 'Ctrl+Q' : 'Cmd+Q',
+                accelerator: 'CmdOrCtrl+Q', // Works on both Windows and macOS
                 click: () => app.quit(),
             }
         ]
