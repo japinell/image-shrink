@@ -6,6 +6,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const isWin = process.platform === 'win32';
 
 let mainWindow;
+let aboutWindow;
 
 const createMainWindow = () => {
     mainWindow = new BrowserWindow(
@@ -20,8 +21,23 @@ const createMainWindow = () => {
 
     //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     mainWindow.loadFile('./app/index.html');
-
 }
+
+const createAboutWindow = () => {
+    aboutWindow = new BrowserWindow(
+        {
+            title: 'About Image Shrink',
+            width: 300,
+            height: 300,
+            icon: './assets/icons/Icon_256x256.png',
+            resizable: false,
+        }
+    )
+
+    //mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+    aboutWindow.loadFile('./app/about.html');
+}
+
 
 app.on('ready', () => {
     createMainWindow();
@@ -43,6 +59,15 @@ const menu = [
     {
         role: "fileMenu",
     },
+    ...(isWin ? [{
+        label: "Help",
+        submenu: [
+            {
+               label: "About",
+               click: createAboutWindow 
+            }
+        ]
+    }]: []),
     ...(isDev ? [
         {
             label: "Developer",
