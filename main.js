@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
+const { app, BrowserWindow, Menu, globalShortcut, ipcMain } = require('electron');
 
 // Set environment variable for development
 process.env.NODE_ENV = 'development';
@@ -107,4 +107,8 @@ app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createMainWindow();
     }
+})
+
+ipcMain.on("image:shrink", (e, options) => {
+    console.log("Shrink image with options:", options);
 })
