@@ -32,6 +32,10 @@ app.on('ready', () => {
     globalShortcut.register("CmdOrCtrl+R", () => {
         mainWindow.reload();
     });
+
+    globalShortcut.register("CmdOrCtrl+Shift+I", () => {
+        mainWindow.toggleDevTools();
+    });
     
 })
 
