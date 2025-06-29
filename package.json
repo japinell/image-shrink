@@ -4,11 +4,13 @@
   "description": "App to optimize images",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "nodemon --exec electron ."
   },
   "author": "JP",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^37.1.0"
+    "electron": "^37.1.0",
+    "nodemon": "^3.1.10"
   }
 }
