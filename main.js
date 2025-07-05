@@ -1,3 +1,10 @@
+const path = require('path');
+const os = require('os');
+const imagemin = require('imagemin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const slash = require('slash');
+
 const { app, BrowserWindow, Menu, globalShortcut, ipcMain } = require('electron');
 
 // Set environment variable for development
